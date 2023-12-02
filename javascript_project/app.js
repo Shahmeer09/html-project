@@ -112,6 +112,39 @@
 
 
 
+const arr = [];
+let data;
+const div = document.querySelector('.render-phones');
+const checkout = document.querySelector('#checkout');
+
+axios.get('https://fakestoreapi.com/products')
+.then((res)=>{
+    // console.log(res.data);
+    data = res.data
+    for (let i = 0; i < res.data.length; i++) {
+        // console.log(res.data[i]);  
+        div.innerHTML += `
+        <div style="border: 1px solid black;" class="m-5 p-5 rounded">
+        <h1>title: ${res.data[i].title}</h1> <br/>
+        <img width="200px" src="${res.data[i].image}" alt="product-image">
+        <h3>price: ${res.data[i].price}</h3>
+        <button onclick="addToCart(${i})" class="btn btn-primary m-2 btn-lg">Add to cart</button>
+        </div>
+        `
+    }
+}).catch((err)=>{
+    console.log(err);
+})
+
+function addToCart (index){
+    // console.log(data[index]);
+    arr.push(data[index]);
+    console.log(arr);
+}
+
+
+
+
 
 
 
@@ -130,7 +163,7 @@
 
           const cartItems = [];
 
-          function addToCart() {
+          function addToCartthree() {
               const productCard = document.getElementById('productCardone');
   
             
@@ -138,13 +171,13 @@
               const productPrice = productCard.querySelector('p').textContent;
   
             
-              const cartItem = {
+              const cartItemone = {
                   title: productTitle,
                   price: productPrice,
               };
   
     
-              cartItems.push(cartItem);
+              cartItems.push(cartItemone);
   
               
               console.log('Cart Items:', cartItems);
@@ -188,13 +221,13 @@
               const productPrice = productCard.querySelector('p').textContent;
   
             
-              const cartItem = {
+              const cartItemthree = {
                   title: productTitle,
                   price: productPrice,
               };
   
     
-              cartItems.push(cartItem);
+              cartItems.push(cartItemthree);
   
               
               console.log('Cart Items:', cartItems);
